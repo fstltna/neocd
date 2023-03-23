@@ -1,0 +1,29 @@
+name: neocd # you probably want to 'snapcraft register <name>'
+base: core18 # the base snap is the execution environment for this snap
+version: '1.1.0' # just for humans, typically '1.2+git' or '1.3.2'
+summary: NeoGeo CD emulator
+description: |
+  NeoGeo CD emulator
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+icon:  neocd_icon.png
+title: NeoCD
+
+apps:
+  neocd:
+    command: neocd
+parts:
+  neocd:
+    # See 'snapcraft plugins'
+    plugin: dump
+    source: .
+#    build-packages: [default-jre]
+#    stage-packages: [default-jre]
+    organize:
+      neocd: build/
+      neocd.1: man/man1/
+
+architectures:
+  - build-on: amd64
+
